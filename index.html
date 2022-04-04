@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="stylesheet" href="./style/style.css" />
+    <script src="./js/tabata.js" defer></script>
+    <script src="./js/menu.js" defer></script>
+    <script src="./js/timer.js" defer></script>
+    <title>Tabata</title>
+  </head>
+  <body>
+    <!-- LANDING AND TABATA PAGE -->
+    <main class="tabata-container">
+      <!-- LEFT SIDE OF THE GRID -->
+      <section id="menu-worktime-resttime-container">
+        <button id="menu-button">MENU</button>
+        <div id="rest-time"></div>
+        <p id="work-time"></p>
+        <div id="buttons-container">
+          <button id="start">Start</button>
+          <button id="stop">Stop</button>
+          <br />
+          <button id="reset">Reset</button>
+        </div>
+      </section>
+      <!-- LEFT SIDE OF THE GRID -->
+
+      <!-- RIGHT SIDE OF THE GRID -->
+      <section id="full-time-and-rounds-left">
+        <div id="full-time-left"></div>
+        <div id="rounds-left"></div>
+      </section>
+    </main>
+    <!-- RIGHT SIDE OF THE GRID -->
+    <!-- LANDING AND TABATA PAGE -->
+
+    <!-- MENU -->
+    <section class="menu" id="is-hidden">
+      <button id="button-main">MAIN</button>
+      <div class="menu-box" id="set-work-time">
+        WORK: <input id="work-input" placeholder="5s" type="number" />
+      </div>
+      <div class="menu-box" id="set-rest-time">
+        REST: <input id="rest-input" placeholder="1s" type="number" />
+      </div>
+      <div class="menu-box" id="set-rounds">
+        ROUNDS: <input id="rounds-left-input" placeholder="3s" type="number" />
+      </div>
+      <div id="skontat-cemo">DEV BY GAZIBARA &copy</div>
+    </section>
+    <!-- MENU -->
+  </body>
+</html>

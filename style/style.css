@@ -1,0 +1,183 @@
+/* FONTS */
+@import url("https://fonts.googleapis.com/css2?family=Stick+No+Bills:wght@400;600&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Iceland&display=swap");
+
+/* ROOT COLORS */
+:root {
+  --green: #8dc57e;
+  --red: #e1443e;
+  --black: rgb(62, 59, 59);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Iceland", cursive;
+  font-size: 1rem;
+}
+
+/* TABATA LANDING */
+.tabata-container {
+  height: 100vh;
+  width: 100%;
+  display: grid;
+  grid-template-columns: 7fr 3fr;
+}
+
+/* APPLYING FLEXBOX AND CENTERING NUMBERS */
+#rest-time,
+#rounds-left,
+#full-time-left {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 32px;
+  font-family: "Stick No Bills", sans-serif;
+}
+
+#menu-worktime-resttime-container,
+#rest-time,
+#full-time-left,
+#rounds-left {
+  border: 3px solid var(--black);
+}
+
+#menu-worktime-resttime-container {
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+
+/* INDIVIDUAL ELEMENTS */
+#menu-button {
+  margin: 5px;
+  padding: 5px;
+  width: 70px;
+}
+
+#rest-time {
+  width: 150px;
+  height: 80px;
+  position: absolute;
+  right: -3px;
+  top: -5px;
+  font-size: 45px;
+}
+
+#work-time {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  justify-content: center;
+  align-items: center;
+  transform: translate(-50%, -50%);
+  font-family: "Stick No Bills", sans-serif;
+  font-size: 85px;
+}
+
+#buttons-container {
+  position: absolute;
+  bottom: 50px;
+  right: 50%;
+  transform: translate(50%, 0);
+  width: 150px;
+}
+
+#start,
+#stop {
+  width: 45%;
+}
+
+#reset {
+  margin-top: 3px;
+  width: 93%;
+}
+
+/* RIGHT SIDE OF THE GRID */
+
+#full-time-left,
+#rounds-left {
+  width: 100%;
+  height: 50%;
+}
+
+#is-hidden {
+  display: none;
+}
+
+/* MENU */
+
+.menu {
+  height: 100vh;
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+input {
+  width: 50px;
+}
+
+#button-main {
+  position: absolute;
+  margin: 5px;
+  padding: 5px;
+  width: 70px;
+}
+
+#set-work-time,
+#set-rest-time,
+#set-rounds,
+#skontat-cemo {
+  border: 1px solid var(--black);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.menu-box:hover {
+  background-color: rgba(255, 230, 0, 0.318);
+}
+
+/* ALERTS */
+
+.alert {
+  position: absolute;
+  width: 300px;
+  text-align: center;
+  top: 0;
+  left: 45%;
+  border-radius: 2px;
+  transform: translate(-50%, 0%);
+  animation: alert 1s linear;
+}
+
+.success {
+  background-color: var(--green);
+}
+
+.failure {
+  background-color: var(--red);
+}
+
+/* ALERT ANIMATIONS */
+
+@keyframes alert {
+  0% {
+    opacity: 0;
+  }
+  25% {
+    opacity: 0.25;
+  }
+  50% {
+    opacity: 0.5;
+  }
+
+  75% {
+    opacity: 0.75;
+  }
+  100% {
+    opacity: 1;
+  }
+}
