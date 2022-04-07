@@ -220,9 +220,13 @@ function stopAllTimes() {
 
 // COLOR CHANGE FUNCTION
 function colorChanges(selector, par) {
-  document.querySelector("body").classList.add(selector);
+  document
+    .getElementById("menu-worktime-resttime-container")
+    .classList.add(selector);
   setTimeout(() => {
-    document.querySelector("body").classList.remove(selector);
+    document
+      .getElementById("menu-worktime-resttime-container")
+      .classList.remove(selector);
   }, par);
 }
 
@@ -238,4 +242,3 @@ startButton.addEventListener("click", () => {
 });
 resetButton.addEventListener("click", resetAllTimes);
 stopButton.addEventListener("click", stopAllTimes);
-// SETTING EVENT LISTENERS
