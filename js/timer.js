@@ -48,14 +48,14 @@ function decrementFullTime() {
 
 // DECREMENT WORK TIME
 function decrementWorkTime() {
-  // PLAYING SOUND
-  playWork();
-  // SETTING THE CURRENT TIME TO WORK
-  currTime = "work";
-  // CALLING THE COLOR FLASH
-  colorChanges("success", 400);
   // SWITCH CHECK
   if (wsw === false) {
+    // PLAYING SOUND
+    playWork();
+    // SETTING THE CURRENT TIME TO WORK
+    currTime = "work";
+    // CALLING THE COLOR FLASH
+    colorChanges("success", 400);
     // SWITCH FLIP
     wsw = true;
     // CALLING INTERVAL
