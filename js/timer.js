@@ -46,6 +46,21 @@ function decrementFullTime() {
   }
 }
 
+// SCREEN WAKE API
+let wakeLock = null;
+// WAKELOCK SWITCH
+let wakesw = false;
+
+// WAKELOCK LOGIC
+async function acquireLock() {
+  if (!"wakeLock" in navigator || wakesw === true) return;
+  wakeLock = await navigator.wakeLock.request("screen");
+  wakesw = true;
+  wakeLock.addEventListener("release", () => {
+    wakesw = false;
+  });
+}
+
 // DECREMENT WORK TIME
 function decrementWorkTime() {
   // SWITCH CHECK
@@ -60,6 +75,8 @@ function decrementWorkTime() {
     wsw = true;
     // CALLING INTERVAL
     workTimeInterval();
+    // CALLING WAKELOCK LOGIC
+    acquireLock();
   }
 }
 
