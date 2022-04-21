@@ -211,7 +211,7 @@ input {
 }
 
 .success {
-  background-color: var(--white);
+  background-color: green;
 }
 
 .failure {
@@ -290,5 +290,29 @@ input {
 
   #rest-time {
     width: 100px;
+  }
+}
+
+@media only screen and (max-height: 575.98px) and (orientation: landscape) {
+  #buttons-container {
+    flex-direction: row;
+  }
+
+  #button-main,
+  #menu-button {
+    width: 80px;
+    font-size: 1rem;
+  }
+
+  #start,
+  #stop,
+  #reset {
+    font-size: 1rem;
+    padding: 5px 20px;
+    font-weight: bolder;
+  }
+
+  #work-time {
+    font-size: 6rem;
   }
 }
