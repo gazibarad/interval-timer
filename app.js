@@ -57,8 +57,7 @@ const checkInputAndUpdateTimer = () => {
 // ALERT BOX DISPLAY
 const alertBoxFailure = () => {
   const div = document.createElement("div");
-  div.innerText =
-    "Please set all the input values or the values will be set to default automatically.";
+  div.innerText = "Please set all the input values!";
   div.classList.add("alert");
   div.classList.add("failure");
   document.getElementById("menu-button").insertAdjacentElement("afterend", div);
@@ -66,6 +65,7 @@ const alertBoxFailure = () => {
     div.remove();
   }, 3000);
 };
+
 const alertBoxSuccess = () => {
   const div = document.createElement("div");
   div.innerText = "The values have been set!";
@@ -76,7 +76,6 @@ const alertBoxSuccess = () => {
     div.remove();
   }, 3000);
 };
-// ALERT BOX DISPLAY
 
 // GET FULL TIME FUNCTION
 function getFullTime() {
@@ -84,7 +83,7 @@ function getFullTime() {
   const workTime = parseInt(workTimeContainer.textContent);
   const restTime = parseInt(restTimeContainer.textContent);
   const roundsLeft = parseInt(roundsLeftContainer.textContent);
-  const fullTimeLeft = (workTime + restTime) * roundsLeft;
+  const fullTimeLeft = (workTime + restTime) * roundsLeft - restTime;
   // INSERT INTO THE DOM
   fullTimeLeftContainer.textContent = fullTimeLeft;
 }
@@ -119,6 +118,7 @@ let roundsLeft;
 let fsw = false;
 let wsw = false;
 let rsw = false;
+let roundsw = false;
 
 // SPLITTING TIMES AT THE START TO RESET THEM WHEN NEEDED
 let c, rc, wc, roundsc, i, ri, wi;
@@ -130,16 +130,16 @@ let currTime;
 let workSound, restSound, endSound;
 
 // PLAY AUDIO
-function playWork() {
+function playWorkSound() {
   workSound = new Audio("../sfx/tworings.mp3");
   workSound.play();
 }
-function playRest() {
+function playRestSound() {
   restSound = new Audio("../sfx/threerings.mp3");
   restSound.play();
 }
 
-function playEnd() {
+function playEndSound() {
   endSound = new Audio("../sfx/oneRing.mp3");
   endSound.play();
 }
@@ -172,7 +172,7 @@ function decrementWorkTime() {
   // SWITCH CHECK
   if (wsw === false) {
     // PLAYING SOUND
-    playWork();
+    playWorkSound();
     // SETTING THE CURRENT TIME TO WORK
     currTime = "work";
     // CALLING THE COLOR FLASH
@@ -190,16 +190,16 @@ function decrementWorkTime() {
 function decrementRestTime() {
   // CHECK FOR LAST ROUND OR FIRST
   if (roundsLeft > 1 || roundsLeft === undefined) {
-    playRest();
-    colorChanges("failure", 400);
-    currTime = "rest";
     if (rsw === false) {
       rsw = true;
+      playRestSound();
+      colorChanges("failure", 400);
+      currTime = "rest";
       restTimeInterval();
     }
   } else {
     // SKIP REST IN CASE OF LAST ROUND
-    playEnd();
+    playEndSound();
     colorChanges("failure", 1200);
     resetAllTimes();
   }
@@ -207,12 +207,17 @@ function decrementRestTime() {
 
 // DECREMENT ROUNDS
 function decrementRounds() {
-  roundsLeft = parseInt(document.getElementById("rounds-left").innerText);
-  roundsc = roundsLeft;
-  if (roundsLeft != 1) {
+  if (!roundsw) {
+    roundsLeft = parseInt(document.getElementById("rounds-left").innerText);
+    roundsc = roundsLeft;
+    console.log(`roundsc:${roundsc} roundsLeft:${roundsLeft}`);
+    roundsw = true;
+  }
+  if (roundsLeft > 1) {
     roundsLeft--;
     document.getElementById("rounds-left").innerText = roundsLeft;
   } else {
+    roundsw = true;
     roundsLeft = roundsc;
     document.getElementById("rounds-left").innerText = roundsc;
   }
@@ -239,7 +244,7 @@ function workTimeInterval() {
         document.getElementById("work-time").innerText = wc;
         // RESETTING TO SPLIT VALUE
         wi = wc;
-        // FLIPPERINO
+        // FLIPPING THE SWITCH
         wsw = false;
         // START REST TIME TIMER
         decrementRestTime();
@@ -353,15 +358,16 @@ function colorChanges(selector, par) {
   }, par);
 }
 
-// SETTING EVENT LISTENERS
-startButton.addEventListener("click", decrementFullTime);
-startButton.addEventListener("click", () => {
-  // CHECKING IF THE TIMER WAS STOPPED ON WORK OR REST TIME
+const whichTimeCheck = () => {
   if (currTime === "work" || currTime === undefined) {
     decrementWorkTime();
   } else if (currTime === "rest") {
     decrementRestTime();
   }
-});
+};
+
+// SETTING EVENT LISTENERS
+startButton.addEventListener("click", decrementFullTime);
+startButton.addEventListener("click", whichTimeCheck);
 resetButton.addEventListener("click", resetAllTimes);
 stopButton.addEventListener("click", stopAllTimes);

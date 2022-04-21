@@ -3,10 +3,20 @@
 @import url("https://fonts.googleapis.com/css2?family=Iceland&display=swap");
 
 /* ROOT COLORS */
+::selection {
+  color: var(--white);
+  background: var(--black);
+}
+
 :root {
-  --green: #8dc57e;
-  --red: #e1443e;
-  --black: rgb(62, 59, 59);
+  --blue: #40476d;
+  --red: #ff312e;
+  --black: #0e0f19;
+  --white: #fefffe;
+}
+
+html {
+  min-width: 290px;
 }
 
 * {
@@ -18,17 +28,27 @@
 }
 
 button {
-  transition: transform 0.3s ease-in-out;
-  border-radius: 4px;
-  background-color: #4fb477;
+  transition: transform 0.3s linear;
+  border-radius: 25px;
+  outline: none;
+  border: 6px solid var(--black);
+  color: var(--black);
 }
 
-button:hover {
+button:hover,
+button:focus {
   transform: scale(0.96);
+  border: 6px solid var(--red);
 }
 
 body {
-  background-image: linear-gradient(to top, #dfe9f3 0%, white 100%);
+  background-image: linear-gradient(
+    -225deg,
+    #22e1ff 0%,
+    #1d8fe1 48%,
+    #625eb1 100%
+  );
+  color: var(--black);
 }
 
 /* TABATA LANDING */
@@ -54,7 +74,7 @@ body {
 #rest-time,
 #full-time-left,
 #rounds-left {
-  border: 3px solid var(--black);
+  border: 5px solid var(--black);
 }
 
 #menu-worktime-resttime-container {
@@ -71,6 +91,7 @@ body {
   position: absolute;
   right: -3px;
   top: -5px;
+  padding: 4rem;
 }
 
 #work-time {
@@ -92,7 +113,7 @@ body {
   bottom: 50px;
   right: 50%;
   transform: translate(50%, 0);
-  width: 80%;
+  width: 50%;
 }
 
 #start,
@@ -162,8 +183,15 @@ input {
   text-align: center;
 }
 
-.menu-box:hover {
-  background-color: rgba(255, 230, 0, 0.318);
+.menu-box {
+  transition: background-color 1s ease-in-out;
+  transition-delay: 0.2s;
+}
+
+.menu-box:hover,
+.menu-box:focus-within {
+  background-color: var(--black);
+  color: var(--red);
 }
 
 /* ALERTS */
@@ -171,16 +199,19 @@ input {
 .alert {
   position: absolute;
   text-align: center;
-  top: 0;
+  top: 50%;
   left: 50%;
-  border-radius: 2px;
-  transform: translate(-50%, 0%);
-  animation: alert 1s linear;
-  font-size: 3rem;
+  padding: 1rem 2rem;
+  border-radius: 10px;
+  transform: translate(-50%, -50%);
+  animation: alert 1.2s linear;
+  font-size: 2rem;
+  color: var(--white);
+  z-index: 2000;
 }
 
 .success {
-  background-color: var(--green);
+  background-color: var(--white);
 }
 
 .failure {
@@ -232,14 +263,20 @@ input {
   #stop,
   #reset {
     font-size: 1rem;
+    font-weight: bolder;
+  }
+
+  #rest-time {
+    padding: 1rem;
   }
 
   .alert {
     font-size: 2rem;
-    color: white;
+    color: var(--white);
     z-index: 50;
   }
 }
+
 @media only screen and (max-width: 360px) {
   #rest-time,
   #rounds-left,
