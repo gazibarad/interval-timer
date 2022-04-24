@@ -147,7 +147,7 @@ body {
   height: 100vh;
   width: 100%;
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-auto-rows: 1fr;
 }
 
 input {
@@ -181,6 +181,10 @@ input {
   align-items: center;
   font-size: 4rem;
   text-align: center;
+}
+
+#logo {
+  height: 200px;
 }
 
 .menu-box {

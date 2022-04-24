@@ -197,11 +197,6 @@ function decrementRestTime() {
       currTime = "rest";
       restTimeInterval();
     }
-  } else {
-    // SKIP REST IN CASE OF LAST ROUND
-    playEndSound();
-    colorChanges("failure", 1200);
-    resetAllTimes();
   }
 }
 
@@ -285,6 +280,8 @@ function fullTimeInterval() {
         i--;
       } else {
         // WE CHECK FULL TIME TO END THE CYCLE
+        playEndSound();
+        colorChanges("failure", 1200);
         resetAllTimes();
       }
     }
