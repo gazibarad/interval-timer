@@ -138,7 +138,6 @@ function playRestSound() {
   restSound = new Audio("../sfx/threerings.mp3");
   restSound.play();
 }
-
 function playEndSound() {
   endSound = new Audio("../sfx/oneRing.mp3");
   endSound.play();

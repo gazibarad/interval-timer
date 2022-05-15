@@ -41,13 +41,14 @@
     <section class="menu" id="is-hidden">
       <button id="button-main">MAIN</button>
       <div class="menu-box" id="set-work-time">
-        WORK: <input id="work-input" placeholder="5s" type="number" />
+        WORK: <input id="work-input" min="0" placeholder="20s" type="number" />
       </div>
       <div class="menu-box" id="set-rest-time">
-        REST: <input id="rest-input" placeholder="1s" type="number" />
+        REST: <input id="rest-input" min="0" placeholder="10s" type="number" />
       </div>
       <div class="menu-box" id="set-rounds">
-        ROUNDS: <input id="rounds-left-input" placeholder="3s" type="number" />
+        ROUNDS:
+        <input id="rounds-left-input" min="1" placeholder="3" type="number" />
       </div>
       <div id="skontat-cemo">
         DEV BY <img id="logo" src="./logo.png" alt="logo" />
